@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>George Kawino — Carpenter &amp; Site Supervisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121110;
+    --bg-alt:#1A1815;
+    --panel:#1F1C18;
+    --text:#EDE8DD;
+    --muted:#9A9184;
+    --muted-dim:#6E6659;
+    --accent:#C98A3B;
+    --accent-soft:#8A5E2C;
+    --line:rgba(237,232,221,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;font-weight:600;}
+  .serif{font-family:'Fraunces', serif;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 40px;}
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:60;
+    background:rgba(18,17,16,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 40px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:0.01em;
+  }
+  .brand em{color:var(--accent);font-style:normal;}
+  .navlinks{
+    display:flex;align-items:center;gap:30px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--text);}
+  .navlinks .cta{
+    color:var(--bg);
+    background:var(--accent);
+    padding:9px 16px;
+    border-radius:2px;
+    font-weight:700;
+  }
+  .navlinks .cta:hover{color:var(--bg);opacity:0.9;}
+  @media (max-width:760px){ .navlinks a:not(.cta){display:none;} }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;
+    padding:64px 0 0;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .status-row{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:26px;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+  }
+  .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:#7FBF6A;
+    box-shadow:0 0 0 3px rgba(127,191,106,0.18);
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-size:clamp(46px,7vw,84px);
+    font-weight:600;
+    line-height:0.98;
+    letter-spacing:-0.01em;
+  }
+  .hero .role-line{
+    margin-top:18px;
+    font-size:19px;
+    color:var(--muted);
+  }
+  .hero .role-line b{color:var(--text);font-weight:600;}
+  .hero p.bio{
+    max-width:480px;
+    margin-top:22px;
+    color:var(--muted);
+    font-size:16.5px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.05em;
+    padding:14px 22px;
+    border-radius:2px;
+    font-weight:600;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--accent);color:#171310;}
+  .btn-outline{border:1px solid var(--line);color:var(--text);}
+  .btn-outline:hover{border-color:var(--accent);}
+
+  .hero-art{
+    position:relative;
+    aspect-ratio:4/5;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(201,138,59,0.18), transparent 60%),
+      var(--panel);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .hero-art svg{width:62%;height:62%;}
+  .hero-art .tagbox{
+    position:absolute;bottom:18px;left:18px;right:18px;
+    display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--muted-dim);
+    letter-spacing:0.05em;text-transform:uppercase;
+    border-top:1px solid var(--line);
+    padding-top:12px;
+  }
+
+  .scrollnote{
+    display:flex;align-items:center;gap:10px;
+    margin-top:56px;
+    padding-bottom:20px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--muted-dim);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .scrollnote::before{
+    content:"";
+    width:26px;height:1px;background:var(--muted-dim);
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-alt);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:16px 0;
+  }
+  .marquee-track{
+    display:inline-block;
+    animation:scroll 26s linear infinite;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .marquee-track span{margin:0 22px;}
+  .marquee-track span.hi{color:var(--accent);}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTION generic ---------- */
+  section{padding:96px 0;border-bottom:1px solid var(--line);}
+  .section-tag{display:flex;align-items:center;gap:14px;margin-bottom:44px;}
+  .section-tag .ln{flex:1;height:1px;background:var(--line);}
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-size:clamp(28px,4vw,40px);
+    font-weight:600;
+    margin-top:10px;
+    max-width:640px;
+  }
+
+  /* ---------- NUMBERS ---------- */
+  .numbers-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+  }
+  @media (max-width:760px){ .numbers-grid{grid-template-columns:1fr;gap:44px;} }
+  .num{
+    font-family:'Fraunces',serif;
+    font-size:clamp(50px,6vw,72px);
+    font-weight:600;
+    color:var(--accent);
+    line-height:1;
+  }
+  .num-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text);
+    margin:14px 0 10px;
+  }
+  .num-desc{color:var(--muted);font-size:14.5px;max-width:280px;}
+
+  /* ---------- SELECTED WORK ---------- */
+  .case{
+    display:grid;
+    grid-template-columns:70px 1fr 1fr;
+    gap:28px;
+    align-items:start;
+    padding:38px 0;
+    border-top:1px solid var(--line);
+  }
+  .case:last-child{border-bottom:none;}
+  @media (max-width:760px){ .case{grid-template-columns:1fr;gap:14px;} }
+  .case-idx{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--muted-dim);
+    font-size:13px;
+    padding-top:6px;
+  }
+  .case-role{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .case h3{font-family:'Fraunces',serif;font-size:24px;font-weight:600;margin-bottom:10px;}
+  .case p{color:var(--muted);font-size:15.5px;max-width:420px;}
+  .case-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .case-tags span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:5px 10px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .tl-item{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:28px;
+    padding:34px 0;
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:640px){ .tl-item{grid-template-columns:1fr;gap:8px;} }
+  .tl-year{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--accent);
+    font-size:14px;
+    padding-top:4px;
+  }
+  .tl-item h3{font-family:'Fraunces',serif;font-size:21px;font-weight:600;margin-bottom:8px;}
+  .tl-item p{color:var(--muted);font-size:15px;max-width:480px;}
+
+  /* ---------- REFERENCES ---------- */
+  .ref-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:760px){ .ref-grid{grid-template-columns:1fr;} }
+  .ref-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:32px;
+  }
+  .ref-card p.quote{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--text);
+    margin:0 0 24px;
+  }
+  .ref-who{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .ref-who b{color:var(--text);font-family:'Space Grotesk',sans-serif;text-transform:none;font-size:15px;letter-spacing:0;}
+
+  /* ---------- CONTACT ---------- */
+  #contact{border-bottom:none;padding-bottom:0;}
+  .contact-inner{text-align:left;}
+  .contact-inner h2{
+    font-family:'Fraunces',serif;
+    font-size:clamp(42px,7vw,88px);
+    font-weight:600;
+    line-height:1.02;
+  }
+  .contact-inner h2 em{color:var(--accent);font-style:italic;}
+  .contact-links{
+    display:flex;flex-wrap:wrap;gap:16px;
+    margin-top:44px;
+  }
+  .contact-links a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13.5px;
+    letter-spacing:0.03em;
+    padding:15px 22px;
+    border:1px solid var(--line);
+    transition:border-color .2s, color .2s;
+  }
+  .contact-links a:hover{border-color:var(--accent);color:var(--accent);}
+  .contact-links a.primary{
+    background:var(--accent);
+    color:#171310;
+    border-color:var(--accent);
+    font-weight:700;
+  }
+  .contact-links a.primary:hover{color:#171310;opacity:0.9;}
+  footer{
+    padding:30px 0;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--muted-dim);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">KAWINO<em>·</em></div>
+    <div class="navlinks">
+      <a href="#work">/work</a>
+      <a href="#history">/history</a>
+      <a href="#references">/references</a>
+      <a class="cta" href="mailto:gkawino@gmail.com">Let's talk →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="status-row"><span class="dot"></span> Available for work — Nairobi, Kenya · 2026</div>
+        <h1>George<br>Kawino</h1>
+        <p class="role-line">Carpenter · Site Supervisor · <b>Jack of all trades</b></p>
+        <p class="bio">Thirty years turning job-site problems into finished work — carpentry, repairs, and the supervision that keeps a crew and a schedule on track. Background spans construction, manufacturing, and hospitality.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="tel:+254738618118">Call +254 738 618 118 →</a>
+          <a class="btn btn-outline" href="#work">/view services</a>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="98" stroke="#C98A3B" stroke-opacity="0.35" stroke-width="1"/>
+          <g stroke="#EDE8DD" stroke-width="3.2" stroke-linecap="round">
+            <line x1="52" y1="150" x2="140" y2="62"/>
+            <line x1="52" y1="150" x2="66" y2="150"/>
+            <line x1="126" y1="76" x2="140" y2="62"/>
+          </g>
+          <circle cx="100" cy="100" r="4" fill="#C98A3B"/>
+          <path d="M60 130 L100 90 L140 130" stroke="#C98A3B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="100" y1="90" x2="100" y2="150" stroke="#C98A3B" stroke-width="2.4"/>
+          <line x1="80" y1="150" x2="120" y2="150" stroke="#C98A3B" stroke-width="2.4"/>
+        </svg>
+        <div class="tagbox"><span>GK / 1996</span><span>Nairobi</span></div>
+      </div>
+    </div>
+
+    <div class="scrollnote">30 years on site</div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>CARPENTRY &amp; JOINERY</span><span class="hi">//</span>
+      <span>SITE SUPERVISION</span><span class="hi">//</span>
+      <span>FURNITURE &amp; FIT-OUTS</span><span class="hi">//</span>
+      <span>GENERAL MAINTENANCE</span><span class="hi">//</span>
+      <span>RENOVATIONS</span><span class="hi">//</span>
+      <span>TEAM LEADERSHIP</span><span class="hi">//</span>
+      <span>CARPENTRY &amp; JOINERY</span><span class="hi">//</span>
+      <span>SITE SUPERVISION</span><span class="hi">//</span>
+      <span>FURNITURE &amp; FIT-OUTS</span><span class="hi">//</span>
+      <span>GENERAL MAINTENANCE</span><span class="hi">//</span>
+      <span>RENOVATIONS</span><span class="hi">//</span>
+      <span>TEAM LEADERSHIP</span><span class="hi">//</span>
+    </div>
+  </div>
+</header>
+
+<section id="numbers">
+  <div class="wrap">
+    <div class="numbers-grid">
+      <div class="reveal">
+        <div class="num">30+</div>
+        <div class="num-label">Years of experience</div>
+        <div class="num-desc">On carpentry benches and job sites across Nairobi — from single repairs to full crew supervision.</div>
+      </div>
+      <div class="reveal">
+        <div class="num">05</div>
+        <div class="num-label">Service areas</div>
+        <div class="num-desc">Carpentry, supervision, fit-outs, maintenance, renovations — one contact instead of three contractors.</div>
+      </div>
+      <div class="reveal">
+        <div class="num">02+</div>
+        <div class="num-label">Long-standing clients</div>
+        <div class="num-desc">Happy Country and Oshwal Establishments keep calling him back for repeat work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-tag reveal">
+      <span class="eyebrow">01 — 03</span>
+      <div class="ln"></div>
+    </div>
+    <h2 class="section-title reveal">Services</h2>
+
+    <div style="margin-top:50px;">
+      <div class="case reveal">
+        <div class="case-idx">01</div>
+        <div>
+          <div class="case-role">Core trade</div>
+          <h3>Carpentry &amp; Joinery</h3>
+        </div>
+        <div>
+          <p>Custom furniture, fitted cabinetry, doors and frames — measured, cut and finished on site to fit the space exactly, not a catalogue size.</p>
+          <div class="case-tags"><span>Furniture</span><span>Cabinetry</span><span>Repairs</span></div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-idx">02</div>
+        <div>
+          <div class="case-role">Leadership</div>
+          <h3>Site &amp; Production Supervision</h3>
+        </div>
+        <div>
+          <p>Managing crews, timelines and quality control — experience gained across construction sites, manufacturing floors and hospitality properties.</p>
+          <div class="case-tags"><span>Scheduling</span><span>Quality control</span><span>Crew management</span></div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-idx">03</div>
+        <div>
+          <div class="case-role">Full projects</div>
+          <h3>Renovations &amp; Fit-outs</h3>
+        </div>
+        <div>
+          <p>From a single room refit to a full renovation — coordinated from first measurement to final walkthrough, with the maintenance to match after handover.</p>
+          <div class="case-tags"><span>Renovations</span><span>Installations</span><span>Maintenance</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="wrap">
+    <div class="section-tag reveal">
+      <span class="eyebrow">Since 1996</span>
+      <div class="ln"></div>
+    </div>
+    <h2 class="section-title reveal">Three decades on the tools</h2>
+
+    <div style="margin-top:40px;">
+      <div class="tl-item reveal">
+        <div class="tl-year">1996</div>
+        <div>
+          <h3>Started in carpentry</h3>
+          <p>Learned the trade on real job sites — building furniture and fittings from the ground up.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">Since</div>
+        <div>
+          <h3>Moved into supervision</h3>
+          <p>Took on crew and production oversight across construction, manufacturing, and hospitality settings — while staying hands-on with the trade.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-year">Today</div>
+        <div>
+          <h3>Carpenter &amp; site supervisor</h3>
+          <p>Balances hands-on carpentry with running teams on larger jobs — thirty years in, still on site, still available for the next one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="references">
+  <div class="wrap">
+    <div class="section-tag reveal">
+      <span class="eyebrow">Client feedback</span>
+      <div class="ln"></div>
+    </div>
+    <h2 class="section-title reveal">What clients say</h2>
+
+    <div class="ref-grid" style="margin-top:44px;">
+      <div class="ref-card reveal">
+        <p class="quote">"George supervised a renovation and carpentry job for us from start to finish. On schedule, well managed, and the work has held up since."</p>
+        <div class="ref-who"><b>Happy Country</b><span>Client establishment</span></div>
+      </div>
+      <div class="ref-card reveal">
+        <p class="quote">"We've brought George back for repeat maintenance and carpentry work at our premises. Reliable, skilled, and straightforward to work with."</p>
+        <div class="ref-who"><b>Oshwal Establishments</b><span>Client establishment</span></div>
+      </div>
+    </div>
+    <p style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-dim);letter-spacing:0.03em;">— quotes summarised from client feedback; swap in exact wording anytime —</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-inner reveal">
+    <span class="eyebrow">Get in touch</span>
+    <h2 style="margin-top:16px;">Let's build<br>the <em>next</em> job.</h2>
+    <div class="contact-links">
+      <a class="primary" href="mailto:gkawino@gmail.com">gkawino@gmail.com</a>
+      <a href="tel:+254738618118">+254 738 618 118</a>
+      <a href="tel:+254741853715">+254 741 853 715</a>
+      <a href="#">Nairobi, Kenya</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <footer>
+      <span>George Kawino — Carpenter &amp; Site Supervisor</span>
+      <span>Nairobi, Kenya — 2026</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
